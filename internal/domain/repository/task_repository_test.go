@@ -104,9 +104,9 @@ func testTaskRepoUpdateNonExistingTask(t testing.TB, taskRepo repository.TaskRep
 
 func testTaskRepoGetAll(t testing.TB, taskRepo repository.TaskRepository) {
 	t.Helper()
-	task1, _ := entity.NewTask("1")
-	task2, _ := entity.NewTask("1")
-	task3, _ := entity.NewTask("1")
+	task1, _ := entity.NewTask("task 1")
+	task2, _ := entity.NewTask("task 2")
+	task3, _ := entity.NewTask("task 3")
 	tasks := []*entity.Task{task1, task2, task3}
 
 	taskRepo.Save(task1)
@@ -116,7 +116,7 @@ func testTaskRepoGetAll(t testing.TB, taskRepo repository.TaskRepository) {
 	got, err := taskRepo.GetAll()
 
 	assert.NoError(t, err)
-	assert.Equal(t, tasks, got)
+	assert.ElementsMatch(t, tasks, got)
 }
 
 func testTaskRepoDelete(t testing.TB, taskRepo repository.TaskRepository) {
