@@ -13,7 +13,7 @@ var (
 type TaskRepository interface {
 	Save(task *entity.Task) error
 	Update(task *entity.Task) error
-	Delete(id string) error
-	GetById(id string) (*entity.Task, error)
+	Delete(id entity.TaskID) error
+	GetById(id entity.TaskID) (*entity.Task, error)
 	GetAll() ([]*entity.Task, error)
 }

@@ -52,18 +52,18 @@ func testTaskRepoSaveAndGet(t testing.TB, taskRepo repository.TaskRepository) {
 	err := taskRepo.Save(task)
 
 	assert.NoError(t, err)
+	assert.True(t, task.Id.IsValid(), "task ID should be valid after saving")
 
 	got, err := taskRepo.GetById(task.Id)
 
 	assert.NoError(t, err)
-
 	assert.Equal(t, task, got)
 }
 
 func testTaskRepoGetNonExistingTask(t testing.TB, taskRepo repository.TaskRepository) {
 	t.Helper()
 
-	_, err := taskRepo.GetById("non-existing-task-id")
+	_, err := taskRepo.GetById(-1)
 
 	if assert.Error(t, err) {
 		assert.Equal(t, repository.ErrTaskNotFound, err)
@@ -139,7 +139,7 @@ func testTaskRepoDelete(t testing.TB, taskRepo repository.TaskRepository) {
 func testTaskRepoDeleteNonExistingTask(t testing.TB, taskRepo repository.TaskRepository) {
 	t.Helper()
 
-	err := taskRepo.Delete("non-existing-task-id")
+	err := taskRepo.Delete(-1)
 
 	if assert.Error(t, err) {
 		assert.Equal(t, repository.ErrTaskNotFound, err)

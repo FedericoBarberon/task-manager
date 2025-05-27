@@ -13,7 +13,8 @@ func TestNewTask_Succesfull(t *testing.T) {
 
 	assert.NoError(t, err)
 	assert.Equal(t, name, task.Name)
-	assert.False(t, task.Completed)
+	assert.False(t, task.Completed, "task should not be completed by default")
+	assert.NotZero(t, task.CreatedAt, "task CreatedAt should be set to current time")
 }
 
 func TestNewTask_ErrorEmptyName(t *testing.T) {
@@ -29,7 +30,7 @@ func TestMarkCompleted(t *testing.T) {
 
 	assert.False(t, task.Completed)
 	task.MarkCompleted()
-	assert.True(t, task.Completed)
+	assert.True(t, task.Completed, "task should be marked as completed")
 }
 
 func TestUpdateName_Succesfull(t *testing.T) {

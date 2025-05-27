@@ -4,14 +4,18 @@ import (
 	"errors"
 	"strings"
 	"time"
-
-	"github.com/google/uuid"
 )
 
 var ErrEmptyName = errors.New("name cannot be empty")
 
+type TaskID int64
+
+func (id TaskID) IsValid() bool {
+	return id > 0
+}
+
 type Task struct {
-	Id        string
+	Id        TaskID
 	Name      string
 	Completed bool
 	CreatedAt time.Time
@@ -25,7 +29,6 @@ func NewTask(name string) (*Task, error) {
 	}
 
 	return &Task{
-		Id:        uuid.New().String(),
 		Name:      name,
 		Completed: false,
 		CreatedAt: time.Now(),

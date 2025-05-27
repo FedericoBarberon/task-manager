@@ -19,10 +19,10 @@ func (s SqliteTaskRepository) Save(task *entity.Task) error {
 func (s SqliteTaskRepository) Update(task *entity.Task) error {
 	return nil
 }
-func (s SqliteTaskRepository) Delete(id string) error {
+func (s SqliteTaskRepository) Delete(id entity.TaskID) error {
 	return nil
 }
-func (s SqliteTaskRepository) GetById(id string) (*entity.Task, error) {
+func (s SqliteTaskRepository) GetById(id entity.TaskID) (*entity.Task, error) {
 	return nil, nil
 }
 func (s SqliteTaskRepository) GetAll() ([]*entity.Task, error) {
